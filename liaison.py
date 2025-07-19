@@ -194,7 +194,7 @@ st.markdown("""
     /* Author info box */
     .author-info {
         background: linear-gradient(135deg, rgba(15, 15, 35, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
-        border: 2px solid #00ffff;
+        border: 2px, solid #00ffff;
         border-radius: 15px;
         padding: 20px;
         margin-top: 20px;
@@ -270,7 +270,8 @@ def generate_quant_quant_report(df, var1, var2, corr, p_value, coef_symbol, norm
     doc.add_paragraph(f'Méthode utilisée : {"Pearson" if normal_var1 and normal_var2 else "Spearman"}')
     doc.add_paragraph(f'Coefficient ({coef_symbol}) : {corr:.4f}')
     doc.add_paragraph(f'p-valeur : {p_value:.4f}')
-    doc.add_paragraph(f'Conclusion : {"Pas d\'association significative" if p_value > 0.05 else "Association significative"}')
+    conclusion = "Pas d'association significative" if p_value > 0.05 else "Association significative"
+    doc.add_paragraph(f'Conclusion : {conclusion}')
     
     output = BytesIO()
     doc.save(output)
@@ -295,7 +296,8 @@ def generate_qual_qual_report(input_tab, method, stat_value, dof_val, p_val):
     doc.add_paragraph(f'Statistique : {stat_value if stat_value else "N/A"}')
     doc.add_paragraph(f'Degrés de liberté : {dof_val if dof_val else "N/A"}')
     doc.add_paragraph(f'p-valeur : {p_val:.4f}')
-    doc.add_paragraph(f'Conclusion : {"Pas d\'association significative" if p_val > 0.05 else "Association significative"}')
+    conclusion = "Pas d'association significative" if p_val > 0.05 else "Association significative"
+    doc.add_paragraph(f'Conclusion : {conclusion}')
     
     output = BytesIO()
     doc.save(output)
@@ -312,7 +314,8 @@ def generate_quant_qual_report(df, quant_var, qual_var, norm_result, var_result,
     doc.add_paragraph(f'Méthode utilisée : {test_method}')
     doc.add_paragraph(f'Statistique : {stat_val:.4f}')
     doc.add_paragraph(f'p-valeur : {p_val:.4f}')
-    doc.add_paragraph(f'Conclusion : {"Pas d\'association significative" if p_val > 0.05 else "Association significative"}')
+    conclusion = "Pas d'association significative" if p_val > 0.05 else "Association significative"
+    doc.add_paragraph(f'Conclusion : {conclusion}')
     
     output = BytesIO()
     doc.save(output)
